@@ -11,7 +11,16 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+      with:
+        repository: 'thin-edge/thin-edge.io'
       #with:
       #  path: /mnt/repo # This specifies the directory to clone into
-    - run: sudo mkdir target
+    - run: sudo mkdir target && sudo chmod 777 target
       working-directory: /mnt
+    
+    - uses: actions-rust-lang/setup-rust-toolchain@v1
+    - run: cargo install cargo-nextest
+    - run: cargo nextest run
+      env:
+        CARGO_TARGET_DIR /mnt/target
+    - run: df -BM
