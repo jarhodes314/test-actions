@@ -27,6 +27,8 @@ jobs:
       - name: Check what's in /mnt
         run: sudo ls /mnt
 
+      - run: cat /mnt/DATALOSS_WARNING_README.txt
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
