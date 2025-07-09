@@ -8,12 +8,10 @@ on:
 jobs:
   clone_repository:
     runs-on: ubuntu-latest # Or your preferred runner environment
-    defaults:
-      run:
-        working-directory: /mnt/repo
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
       #with:
       #  path: /mnt/repo # This specifies the directory to clone into
     - run: mkdir target
+      working-directory: /mnt
