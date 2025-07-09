@@ -8,8 +8,8 @@ on:
 jobs:
   clone_repository:
     runs-on: ubuntu-22.04 # Or your preferred runner environment
-    env:
-      CARGO_TARGET_DIR: /mnt/target
+    # env:
+    #   CARGO_TARGET_DIR: /mnt/target
     steps:
       - name: Check disk space before setting up
         run: df -BM
@@ -32,7 +32,8 @@ jobs:
         with:
           repository: 'thin-edge/thin-edge.io'
 
-      - run: sudo mkdir /mnt/target && sudo chmod 777 /mnt/target
+      - name: Create target dir and symlink it to make caching behave sensibly
+        run: sudo mkdir /mnt/target && sudo chmod 777 /mnt/target && ln -s target /mnt/target
     
       - name: Retrieve MSRV from workspace Cargo.toml
         id: rust_version
