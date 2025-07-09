@@ -24,6 +24,9 @@ jobs:
       - name: Check disk space after freeing
         run: df -BM
 
+      - name: Check what's in /mnt
+        run: sudo ls /mnt
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
