@@ -22,5 +22,5 @@ jobs:
     - run: cargo install cargo-nextest
     - run: cargo nextest run
       env:
-        CARGO_TARGET_DIR /mnt/target
+        CARGO_TARGET_DIR: /mnt/target
     - run: df -BM
