@@ -14,5 +14,6 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-      with:
-        path: /mnt/repo # This specifies the directory to clone into
+      #with:
+      #  path: /mnt/repo # This specifies the directory to clone into
+    - run: mkdir target
