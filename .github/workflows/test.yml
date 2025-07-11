@@ -8,8 +8,8 @@ on:
 jobs:
   clone_repository:
     runs-on: ubuntu-22.04 # Or your preferred runner environment
-    # env:
-    #   CARGO_TARGET_DIR: /mnt/target
+    env:
+      TEMP_DIR_ROOT: /mnt/target
     steps:
       - name: Check disk space before setting up
         run: df -BM
