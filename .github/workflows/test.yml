@@ -20,7 +20,13 @@ jobs:
           sudo rm -rf /opt/ghc
           sudo rm -rf "/usr/local/share/boost"
           sudo rm -rf /opt/hostedtoolcache
-          sudo rm -rf /mnt/* || true
+
+        # Empty /mnt on GitHub hosted runners
+      - name: Empty /mnt directory
+        # See https://github.com/orgs/community/discussions/75621
+        # this seems to be the only way to (somewhat) reliably detected GitHub runners
+        if: ${{ startsWith(runner.name, 'GitHub Actions') }}
+        run: sudo rm -rf /mnt/* || true
 
       - name: Check disk space after freeing
         run: df -BM
